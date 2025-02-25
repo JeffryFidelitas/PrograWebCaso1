@@ -27,3 +27,5 @@ temp/
 # Publish output
 publish/
 dist/
+Caso1API/obj
+Caso1/obj
