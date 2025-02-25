@@ -1,7 +1,14 @@
+using Caso1.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CasoPracticoIContext>(op =>
+{
+    op.UseSqlServer(builder.Configuration.GetConnectionString("CasoPracticoI"));
+});
 
 var app = builder.Build();
 
