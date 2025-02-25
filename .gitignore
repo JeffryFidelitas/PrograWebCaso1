@@ -11,6 +11,8 @@
 
 # IDE and editor-related files
 .idea/
+.vs/  # Agregado para ignorar la carpeta de Visual Studio
+CopilotIndices/  # Agregado para ignorar archivos generados por Copilot
 *.csproj.user
 *.sln.ide
 
@@ -27,5 +29,7 @@ temp/
 # Publish output
 publish/
 dist/
-Caso1API/obj
-Caso1/obj
+
+# Explicitly ignore generated files in projects
+Caso1API/obj/
+Caso1/obj/
