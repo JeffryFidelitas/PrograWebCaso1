@@ -33,3 +33,4 @@ dist/
 # Explicitly ignore generated files in projects
 Caso1API/obj/
 Caso1/obj/
+/.vs
