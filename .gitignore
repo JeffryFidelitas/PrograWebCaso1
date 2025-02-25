@@ -33,4 +33,6 @@ dist/
 # Explicitly ignore generated files in projects
 Caso1API/obj/
 Caso1/obj/
-/.vs
+/.vs/Caso1/CopilotIndices
+/.vs/Caso1/FileContentIndex
+/.vs/Caso1/DesignTimeBuild
