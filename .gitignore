@@ -1,4 +1,29 @@
-Caso1/obj
-Caso1API/obj
-Caso1/bin
-Caso1API/bin
+# Ignore build output directories
+**/bin/
+**/obj/
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE and editor-related files
+.idea/
+*.csproj.user
+*.sln.ide
+
+# NuGet and dependency files
+packages/
+*.nupkg
+project.lock.json
+
+# Logs and temp files
+*.log
+logs/
+temp/
+
+# Publish output
+publish/
+dist/
