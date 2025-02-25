@@ -19,7 +19,7 @@ namespace Caso1
         public string Telefono { get; set; }
 
         [Required]
-        public string Contraseña { get; set; } // En la BD se guarda encriptada
+        public string ContraseÃ±a { get; set; } // En la BD se guarda encriptada
 
         [Required]
         public RolUsuario Rol { get; set; }
