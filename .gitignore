@@ -1,2 +1,40 @@
-Caso1/obj
-Caso1API/obj
+# Ignore build output directories
+**/bin/
+**/obj/
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE and editor-related files
+.idea/
+.vs/  # Agregado para ignorar la carpeta de Visual Studio
+CopilotIndices/  # Agregado para ignorar archivos generados por Copilot
+*.csproj.user
+*.sln.ide
+
+# NuGet and dependency files
+packages/
+*.nupkg
+project.lock.json
+
+# Logs and temp files
+*.log
+logs/
+temp/
+
+# Publish output
+publish/
+dist/
+
+# Explicitly ignore generated files in projects
+Caso1API/obj/
+Caso1/obj/
+/.vs/Caso1/CopilotIndices
+/.vs/Caso1/FileContentIndex
+/.vs/Caso1/DesignTimeBuild
+/.vs/Caso1/FileContentIndex
+/.vs/Caso1/CopilotIndices
