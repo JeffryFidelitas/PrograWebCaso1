@@ -18,7 +18,7 @@ namespace Caso1API
         public string Correo { get; set; }
         [DisplayName("Tel�fono ")]
         [Required(ErrorMessage = "El Tel�fono es un valor requerido")]
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
         [DisplayName("Contraseña ")]
         [Required(ErrorMessage = "La contrase�a es un valor requerido")]
         public string Contrasenna { get; set; }

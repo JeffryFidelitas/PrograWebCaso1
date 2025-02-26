@@ -5,6 +5,6 @@ namespace Caso1
         public int ID { get; set; }
         public DateTime Horario { get; set; }
         public virtual Usuarios Usuario { get; set; }
-        public virtual Vehiculos Vehiculos { get; set; }
+        public virtual Rutas Rutas { get; set; }
     }
 }

@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add DbContext to the container
-builder.Services.AddDbContext<Caso1Context>(options =>
+builder.Services.AddDbContext<Caso1APIContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Caso1DB"));
 });
