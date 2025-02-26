@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Caso1
 {
     public class Vehiculos
     {
+        public int ID { get; set; }
         public string Placa { get; set; }
         public string Modelo { get; set; }
         public int CapacidadPasajeros { get; set; }
