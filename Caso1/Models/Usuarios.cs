@@ -13,14 +13,14 @@ namespace Caso1
         [DisplayName("Nombre de Usuario")]
         [Required(ErrorMessage = "El Nombre de Usuario es un valor requerido")]
         public string NombreDeUsuario { get; set; }
-        [DisplayName("Correo Electrónico")]
-        [Required(ErrorMessage = "El Correo Electrónico es un valor requerido")]
+        [DisplayName("Correo Electrï¿½nico")]
+        [Required(ErrorMessage = "El Correo Electrï¿½nico es un valor requerido")]
         public string Correo { get; set; }
-        [DisplayName("Teléfono ")]
-        [Required(ErrorMessage = "El Teléfono es un valor requerido")]
-        public int Telefono { get; set; }
-        [DisplayName("Contraseña ")]
-        [Required(ErrorMessage = "La contraseña es un valor requerido")]
+        [DisplayName("Telï¿½fono ")]
+        [Required(ErrorMessage = "El Telï¿½fono es un valor requerido")]
+        public string Telefono { get; set; }
+        [DisplayName("Contraseï¿½a ")]
+        [Required(ErrorMessage = "La contraseï¿½a es un valor requerido")]
         public string Contrasenna { get; set; }
         [DisplayName("Rol")]
         [Required(ErrorMessage = "El Rol es un valor requerido")]

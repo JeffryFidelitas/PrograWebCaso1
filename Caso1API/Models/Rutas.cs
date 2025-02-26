@@ -1,36 +1,17 @@
 using Caso1API.Models;
-using System.ComponentModel.DataAnnotations;
 
-namespace Caso1
+namespace Caso1API
 {
-    public class Ruta
+    public class Rutas
     {
-        public int Id { get; set; }
-
-        [Required]
-        public string Codigo { get; set; } // Se genera automáticamente
-
-        [Required, MaxLength(100)]
+        public int ID { get; set; }
         public string Nombre { get; set; }
-
         public string Descripcion { get; set; }
+        public List<string> Paradas { get; set; }
+        public List<string> Horarios { get; set; }
+        public bool Estado { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public virtual Usuarios Usuario { get; set; }
 
-        public List<Parada> Paradas { get; set; } = new List<Parada>();
-
-        public List<Horario> Horarios { get; set; } = new List<Horario>();
-
-        [Required]
-        public EstadoRuta Estado { get; set; }
-
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
-
-        public int UsuarioRegistroId { get; set; }
-        public Usuario UsuarioRegistro { get; set; }
-    }
-
-    public enum EstadoRuta
-    {
-        Activo,
-        Inactivo
     }
 }
