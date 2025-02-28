@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +10,7 @@ namespace Caso1.Core.Models
         public int Id { get; set; }
 
         [Required, StringLength(10)]
-        public string Codigo { get; set; }  // Se generar· autom·ticamente
+        public string Codigo { get; set; }  // Se generar√° autom√°ticamente
 
         [Required, StringLength(100)]
         public string Nombre { get; set; }

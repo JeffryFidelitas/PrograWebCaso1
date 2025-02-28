@@ -2,7 +2,7 @@ using Caso1.Core.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-#region snippet_Program
+#region Configuracion
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,8 +30,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.MapControllers();
 #endregion
 
 #region Endpoints   
