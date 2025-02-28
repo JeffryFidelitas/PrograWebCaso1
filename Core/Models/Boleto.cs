@@ -6,6 +6,7 @@ namespace Caso1.Core.Models
     public class Boleto
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

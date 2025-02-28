@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Caso1.Core.Models
@@ -6,25 +7,28 @@ namespace Caso1.Core.Models
     public class Usuario
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required(ErrorMessage = "Favor ingrese el Nombre de Usuario"), MaxLength(50)]
+        [DisplayName("Nombre de Usuario")]
         public string NombreUsuario { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required(ErrorMessage="Favor ingrese el Nombre Completo"), MaxLength(100)]
+        [DisplayName("Nombre Completo")]
         public string NombreCompleto { get; set; }
 
-        [Required, EmailAddress, MaxLength(100)]
+        [Required(ErrorMessage = "Favor ingrese el Correo"), EmailAddress, MaxLength(100)]
         public string Correo { get; set; }
 
-        [Required, Phone, MaxLength(15)]
+        [Required(ErrorMessage = "Favor ingrese el Telefono"), Phone, MaxLength(15)]
         public string Telefono { get; set; }
 
-        [Required]
-        public string Contraseña { get; set; } // ⚠️ Se recomienda usar Hashing
+        [Required(ErrorMessage = "Favor ingrese la Contraseña")]
+        public string Contraseña { get; set; }
 
-        [Required]
-        public RolUsuario Rol { get; set; } // Enum para definir el rol
+        [Required(ErrorMessage = "Favor seleccione un Rol")]
+        public RolUsuario? Rol { get; set; }
 
         public ICollection<Boleto> Boletos { get; set; } = new List<Boleto>();
     }

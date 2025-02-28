@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Caso1.Core.Data;
 using Caso1.Core.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Caso1.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,13 +17,21 @@ namespace Caso1.Controllers
             _context = context;
         }
 
-        // GET: Usuarios
+        private SelectList GetRoles(string? rolSeleccionado = null)
+        {
+            return new SelectList(Enum.GetValues(typeof(RolUsuario))
+                .Cast<RolUsuario>()
+                .Select(r => new { Value = r.ToString(), Text = r.ToString() }),
+                "Value", "Text", rolSeleccionado);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +52,7 @@ namespace Caso1.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
+            ViewBag.Roles = GetRoles();
             return View();
         }
 
@@ -51,7 +61,7 @@ namespace Caso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuario usuarios)
+        public async Task<IActionResult> Create([Bind("NombreCompleto,NombreUsuario,Correo,Telefono,Contraseña,Rol")] Usuario usuarios)
         {
             if (ModelState.IsValid)
             {
@@ -75,17 +85,17 @@ namespace Caso1.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Roles = GetRoles(usuarios.Rol.ToString());
             return View(usuarios);
         }
 
         // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuario usuarios)
+        public async Task<IActionResult> Edit([Bind("Id,NombreCompleto,NombreUsuario,Correo,Telefono,Contraseña,Rol")] Usuario usuario)
         {
-            if (id != usuarios.Id)
+            if (!UsuariosExists(usuario.Id))
             {
                 return NotFound();
             }
@@ -94,24 +104,33 @@ namespace Caso1.Controllers
             {
                 try
                 {
-                    _context.Update(usuarios);
+                    var usuarioExistente = await _context.Usuarios.FindAsync(usuario.Id);
+                    if (usuarioExistente == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Actualizar solo campos necesarios
+                    usuarioExistente.NombreCompleto = usuario.NombreCompleto;
+                    usuarioExistente.NombreUsuario = usuario.NombreUsuario;
+                    usuarioExistente.Correo = usuario.Correo;
+                    usuarioExistente.Telefono = usuario.Telefono;
+                    usuarioExistente.Contraseña = usuario.Contraseña;
+                    usuarioExistente.Rol = usuario.Rol;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuariosExists(usuarios.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return StatusCode(500, "Error de concurrencia en la base de datos.");
                 }
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuarios);
+            ViewBag.Roles = GetRoles(usuario.Rol.ToString());
+            return View(usuario);
         }
+
 
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -123,26 +142,15 @@ namespace Caso1.Controllers
 
             var usuarios = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (usuarios == null)
             {
                 return NotFound();
             }
 
-            return View(usuarios);
-        }
-
-        // POST: Usuarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var usuarios = await _context.Usuarios.FindAsync(id);
-            if (usuarios != null)
-            {
-                _context.Usuarios.Remove(usuarios);
-            }
-
+            _context.Usuarios.Remove(usuarios);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
