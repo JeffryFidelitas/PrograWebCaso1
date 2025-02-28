@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caso1", "Caso1\Caso1.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caso1API", "Caso1API\Caso1API.csproj", "{93E3CC38-6BC1-4056-B671-65D6E2CCF618}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Models\Core.csproj", "{A10F292D-9927-4DD5-A3AA-D894EFE2F8AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{93E3CC38-6BC1-4056-B671-65D6E2CCF618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93E3CC38-6BC1-4056-B671-65D6E2CCF618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93E3CC38-6BC1-4056-B671-65D6E2CCF618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A10F292D-9927-4DD5-A3AA-D894EFE2F8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10F292D-9927-4DD5-A3AA-D894EFE2F8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10F292D-9927-4DD5-A3AA-D894EFE2F8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10F292D-9927-4DD5-A3AA-D894EFE2F8AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B96C345-A8FA-4546-8CB4-67C92807FA0D}
 	EndGlobalSection
 EndGlobal

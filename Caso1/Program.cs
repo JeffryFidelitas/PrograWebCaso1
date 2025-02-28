@@ -1,4 +1,4 @@
-using Caso1.Models;
+using Caso1.Core.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add DbContext to the container
-builder.Services.AddDbContext<CasoPracticoIContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Caso1DB"));
 });

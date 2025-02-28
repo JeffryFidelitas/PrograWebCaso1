@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Caso1.Usuarios>
+﻿@model IEnumerable<Caso1.Core.Models.Usuario>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.NombreCompleto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreDeUsuario)
+                @Html.DisplayNameFor(model => model.NombreUsuario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Correo)
@@ -26,9 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rol)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
             </th>
             <th></th>
         </tr>
@@ -40,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.NombreCompleto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreDeUsuario)
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Correo)
@@ -52,26 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Rol)
             </td>
             <td>
-                    @{
-                        var tipoEstadoMap = new Dictionary<int, string>
-                {
-                { 1, "Activo" },
-                { 0, "Inactivo" },
-                };
-
-                        int estadoKey = item.Estado ? 1 : 0;
-
-
-                        string tipoEstadoText = tipoEstadoMap.ContainsKey(estadoKey)
-                        ? tipoEstadoMap[estadoKey]
-                        : "Tipo de Estado no registrado";
-                    }
-                    @tipoEstadoText
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Borrar</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
         </tr>
 }

@@ -1,39 +1,33 @@
-using Caso1API.Models.DbConContext;
+using Caso1.Core.Data;
+using Caso1.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Caso1API.Controllers
 {
-    [Route("api/rutas")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RutasController : ControllerBase
     {
-        private readonly Caso1APIContext _context;
-        public RutasController(Caso1APIContext context)
+        private readonly ApplicationDbContext _context;
+
+        public RutasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IActionResult ListRutas()
+        public async Task<ActionResult<IEnumerable<Ruta>>> GetRutas()
         {
-            IEnumerable<Rutas> Rutas = _context.Rutas;
-            if (Rutas.Any())
-                return Ok(Rutas);
-            else
-                return NoContent();
+            return await _context.Rutas.Where(r => r.Activo).ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetRuta(int id)
+        public async Task<ActionResult<Ruta>> GetRuta(int id)
         {
-            Rutas? Ruta = _context.Rutas.Find(id);
-            if (Ruta != null)
-                return Ok(Ruta);
-            else
-                return NotFound();
+            var ruta = await _context.Rutas.FindAsync(id);
+            if (ruta == null) return NotFound();
+            return ruta;
         }
     }
 }

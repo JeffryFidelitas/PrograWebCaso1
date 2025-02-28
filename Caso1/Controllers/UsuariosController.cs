@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Caso1;
-using Caso1.Models;
+using Caso1.Core.Data;
+using Caso1.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Caso1.Controllers
@@ -14,9 +9,9 @@ namespace Caso1.Controllers
     [Authorize(Roles = "Administrador")]
     public class UsuariosController : Controller
     {
-        private readonly CasoPracticoIContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UsuariosController(CasoPracticoIContext context)
+        public UsuariosController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -36,7 +31,7 @@ namespace Caso1.Controllers
             }
 
             var usuarios = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuarios == null)
             {
                 return NotFound();
@@ -56,11 +51,10 @@ namespace Caso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuarios usuarios)
+        public async Task<IActionResult> Create([Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuario usuarios)
         {
             if (ModelState.IsValid)
             {
-                usuarios.Estado = true;
                 _context.Add(usuarios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -89,9 +83,9 @@ namespace Caso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuarios usuarios)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuario usuarios)
         {
-            if (id != usuarios.ID)
+            if (id != usuarios.Id)
             {
                 return NotFound();
             }
@@ -105,7 +99,7 @@ namespace Caso1.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuariosExists(usuarios.ID))
+                    if (!UsuariosExists(usuarios.Id))
                     {
                         return NotFound();
                     }
@@ -128,7 +122,7 @@ namespace Caso1.Controllers
             }
 
             var usuarios = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuarios == null)
             {
                 return NotFound();
@@ -154,7 +148,7 @@ namespace Caso1.Controllers
 
         private bool UsuariosExists(int id)
         {
-            return _context.Usuarios.Any(e => e.ID == id);
+            return _context.Usuarios.Any(e => e.Id == id);
         }
     }
 }
