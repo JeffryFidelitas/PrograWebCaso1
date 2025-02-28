@@ -11,11 +11,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Caso1.Controllers
 {
-    [Authorize(Roles = "Administrador")]
     public class UsuariosController : Controller
     {
         private readonly CasoPracticoIContext _context;
-
+        
         public UsuariosController(CasoPracticoIContext context)
         {
             _context = context;
@@ -56,11 +55,11 @@ namespace Caso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuarios usuarios)
+        public async Task<IActionResult> Create([Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasena,Rol,Estado")] Usuarios usuarios)
         {
+            usuarios.Estado = true;
             if (ModelState.IsValid)
             {
-                usuarios.Estado = true;
                 _context.Add(usuarios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -89,7 +88,7 @@ namespace Caso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasenna,Rol,Estado")] Usuarios usuarios)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,NombreCompleto,NombreDeUsuario,Correo,Telefono,Contrasena,Rol,Estado")] Usuarios usuarios)
         {
             if (id != usuarios.ID)
             {

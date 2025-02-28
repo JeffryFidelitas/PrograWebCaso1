@@ -26,6 +26,11 @@ namespace Caso1.Models
                 .WithMany()
                 .HasForeignKey(b => b.ID)
                 .OnDelete(DeleteBehavior.NoAction); // Evita ciclos de eliminación
+
+            modelBuilder.Entity<Rutas>()
+                .HasOne(x => x.Usuario)
+                .WithMany()
+                .HasForeignKey(x=>x.ID);
         }
 
     }

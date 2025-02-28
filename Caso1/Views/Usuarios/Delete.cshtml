@@ -1,13 +1,14 @@
 ﻿@model Caso1.Usuarios
 
 @{
-    ViewData["Title"] = "Borrar Usuario";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Borrar Usuario</h1>
+<h1>Eliminar</h1>
 
-<h3>¿Estás seguro de que quieres eliminar este usuario?</h3>
+<h3>¿Desea borrar un usuario?</h3>
 <div>
+    <h4>Usuario seleccionado</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -28,29 +29,35 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Correo)
         </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Telefono)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contrasena)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contrasena)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Rol)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rol)
+            @Html.DisplayFor(model => model.NombreRol)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
+            @Html.DisplayFor(model => model.NombreEstado)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        <a asp-action="Index">Regresar al listado</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
     </form>
 </div>

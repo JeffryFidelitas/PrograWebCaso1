@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Caso1.Migrations
 {
     /// <inheritdoc />
-    public partial class INITIAL_MIGRATION : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,9 +20,9 @@ namespace Caso1.Migrations
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NombreDeUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contrasenna = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rol = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<int>(type: "int", nullable: false),
+                    Contrasena = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rol = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -34,22 +34,20 @@ namespace Caso1.Migrations
                 name: "Rutas",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<int>(type: "int", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Paradas = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Horarios = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
-                    FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioID = table.Column<int>(type: "int", nullable: false)
+                    FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rutas", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Rutas_Usuarios_UsuarioID",
-                        column: x => x.UsuarioID,
+                        name: "FK_Rutas_Usuarios_ID",
+                        column: x => x.ID,
                         principalTable: "Usuarios",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -100,11 +98,6 @@ namespace Caso1.Migrations
                         principalTable: "Usuarios",
                         principalColumn: "ID");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rutas_UsuarioID",
-                table: "Rutas",
-                column: "UsuarioID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_UsuarioID",

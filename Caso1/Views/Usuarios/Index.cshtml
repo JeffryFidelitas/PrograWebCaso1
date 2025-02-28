@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listado de usuarios</h1>
 
 <p>
-    <a asp-action="Create">Crear Nuevo Usuario</a>
+    <a asp-action="Create">Agregar un nuevo usuario</a>
 </p>
 <table class="table">
     <thead>
@@ -46,32 +46,18 @@
                 @Html.DisplayFor(modelItem => item.Correo)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.Telefono)
+                @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rol)
+                @Html.DisplayFor(modelItem => item.NombreRol)
             </td>
             <td>
-                    @{
-                        var tipoEstadoMap = new Dictionary<int, string>
-                {
-                { 1, "Activo" },
-                { 0, "Inactivo" },
-                };
-
-                        int estadoKey = item.Estado ? 1 : 0;
-
-
-                        string tipoEstadoText = tipoEstadoMap.ContainsKey(estadoKey)
-                        ? tipoEstadoMap[estadoKey]
-                        : "Tipo de Estado no registrado";
-                    }
-                    @tipoEstadoText
+                @Html.DisplayFor(modelItem => item.NombreEstado)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Borrar</a>
+                <a asp-action="Delete" asp-route-id="@item.ID">Eliminar</a>
             </td>
         </tr>
 }
