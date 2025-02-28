@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Caso1.Core.Models
 {
@@ -8,21 +7,26 @@ namespace Caso1.Core.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(10)]
+        [Required, MaxLength(10)]
         public string Placa { get; set; }
 
-        [Required, StringLength(50)]
+        [Required, MaxLength(50)]
         public string Modelo { get; set; }
 
         [Required]
-        public int CapacidadPasajeros { get; set; }
+        public int Capacidad { get; set; }
 
         [Required]
-        public EstadoVehiculo Estado { get; set; } = EstadoVehiculo.Bueno;
+        public EstadoVehiculo Estado { get; set; }
 
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        [Required]
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
 
+        [Required]
         public int UsuarioRegistroId { get; set; }
+        public Usuario UsuarioRegistro { get; set; }
+
+        public ICollection<Boleto> Boletos { get; set; } = new List<Boleto>();
     }
 
     public enum EstadoVehiculo

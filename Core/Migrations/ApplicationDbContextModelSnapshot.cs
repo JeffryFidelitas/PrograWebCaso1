@@ -33,11 +33,6 @@ namespace Core.Migrations
                     b.Property<DateTime>("FechaCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Horario")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<int>("RutaId")
                         .HasColumnType("int");
 
@@ -48,6 +43,12 @@ namespace Core.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RutaId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.HasIndex("VehiculoId");
 
                     b.ToTable("Boletos");
                 });
@@ -60,9 +61,6 @@ namespace Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -71,6 +69,9 @@ namespace Core.Migrations
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2");
@@ -93,6 +94,8 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UsuarioRegistroId");
+
                     b.ToTable("Rutas");
                 });
 
@@ -110,7 +113,8 @@ namespace Core.Migrations
 
                     b.Property<string>("Correo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NombreCompleto")
                         .IsRequired()
@@ -127,7 +131,8 @@ namespace Core.Migrations
 
                     b.Property<string>("Telefono")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("Id");
 
@@ -142,7 +147,7 @@ namespace Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CapacidadPasajeros")
+                    b.Property<int>("Capacidad")
                         .HasColumnType("int");
 
                     b.Property<int>("Estado")
@@ -166,7 +171,73 @@ namespace Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UsuarioRegistroId");
+
                     b.ToTable("Vehiculos");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Boleto", b =>
+                {
+                    b.HasOne("Caso1.Core.Models.Ruta", "Ruta")
+                        .WithMany("Boletos")
+                        .HasForeignKey("RutaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Caso1.Core.Models.Usuario", "Usuario")
+                        .WithMany("Boletos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Caso1.Core.Models.Vehiculo", "Vehiculo")
+                        .WithMany("Boletos")
+                        .HasForeignKey("VehiculoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Ruta");
+
+                    b.Navigation("Usuario");
+
+                    b.Navigation("Vehiculo");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Ruta", b =>
+                {
+                    b.HasOne("Caso1.Core.Models.Usuario", "UsuarioRegistro")
+                        .WithMany()
+                        .HasForeignKey("UsuarioRegistroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsuarioRegistro");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Vehiculo", b =>
+                {
+                    b.HasOne("Caso1.Core.Models.Usuario", "UsuarioRegistro")
+                        .WithMany()
+                        .HasForeignKey("UsuarioRegistroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsuarioRegistro");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Ruta", b =>
+                {
+                    b.Navigation("Boletos");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Usuario", b =>
+                {
+                    b.Navigation("Boletos");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Vehiculo", b =>
+                {
+                    b.Navigation("Boletos");
                 });
 #pragma warning restore 612, 618
         }

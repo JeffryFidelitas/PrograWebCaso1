@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Caso1.Core.Models;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Caso1.Core.Data
 {
@@ -18,25 +15,23 @@ namespace Caso1.Core.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Usuario>()
-            //    .Property(u => u.Contraseña)
-            //    .HasColumnName("PasswordHash");  // Para evitar almacenar contraseñas en texto plano
-            var listValueComparer = new ValueComparer<List<string>>(
-            (c1, c2) => c1 != null && c2 != null && c1.SequenceEqual(c2),
-            c => c != null ? c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())) : 0,
-            c => c != null ? c.ToList() : new List<string>());
+            modelBuilder.Entity<Boleto>()
+            .HasOne(b => b.Ruta)
+            .WithMany(r => r.Boletos)
+            .HasForeignKey(b => b.RutaId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Ruta>()
-                .Property(r => r.Paradas)
-                .HasConversion(
-                    v => string.Join(";", v),
-                    v => v.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList());
+            modelBuilder.Entity<Boleto>()
+                .HasOne(b => b.Vehiculo)
+                .WithMany(v => v.Boletos)
+                .HasForeignKey(b => b.VehiculoId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Ruta>()
-                .Property(r => r.Horarios)
-                .HasConversion(
-                    v => string.Join(";", v),
-                    v => v.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList());
+            modelBuilder.Entity<Boleto>()
+                .HasOne(b => b.Usuario)
+                .WithMany(u => u.Boletos)
+                .HasForeignKey(b => b.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

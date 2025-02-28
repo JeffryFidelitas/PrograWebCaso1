@@ -8,23 +8,25 @@ namespace Caso1.Core.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(50)]
+        [Required, MaxLength(50)]
         public string NombreUsuario { get; set; }
 
-        [Required, StringLength(100)]
+        [Required, MaxLength(100)]
         public string NombreCompleto { get; set; }
 
-        [Required, EmailAddress]
+        [Required, EmailAddress, MaxLength(100)]
         public string Correo { get; set; }
 
-        [Required, Phone]
+        [Required, Phone, MaxLength(15)]
         public string Telefono { get; set; }
 
         [Required]
-        public string Contraseña { get; set; } // Se almacenará con hash en la BD
+        public string Contraseña { get; set; } // ⚠️ Se recomienda usar Hashing
 
         [Required]
-        public RolUsuario Rol { get; set; }
+        public RolUsuario Rol { get; set; } // Enum para definir el rol
+
+        public ICollection<Boleto> Boletos { get; set; } = new List<Boleto>();
     }
 
     public enum RolUsuario

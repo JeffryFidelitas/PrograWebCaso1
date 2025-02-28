@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Caso1.Core.Models
 {
@@ -9,23 +8,34 @@ namespace Caso1.Core.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(10)]
-        public string Codigo { get; set; }  // Se generará automáticamente
+        [Required, MaxLength(10)]
+        public string Codigo { get; set; } // Generado en la vista con Razor
 
-        [Required, StringLength(100)]
+        [Required, MaxLength(100)]
         public string Nombre { get; set; }
 
         public string Descripcion { get; set; }
 
-        public List<string> Paradas { get; set; } = new List<string>();  // Se almacena como JSON en la BD
+        public List<string> Paradas { get; set; } = new();
 
-        public List<string> Horarios { get; set; } = new List<string>(); // Se almacena como JSON en la BD
+        public List<string> Horarios { get; set; } = new();
 
         [Required]
-        public bool Activo { get; set; } = true;
+        public EstadoRuta Estado { get; set; }
 
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        [Required]
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
 
-        public int UsuarioRegistroId { get; set; }
+        [Required]
+        public int UsuarioRegistroId { get; set; } // Clave foránea a Usuario
+        public Usuario UsuarioRegistro { get; set; }
+
+        public ICollection<Boleto> Boletos { get; set; } = new List<Boleto>();
+    }
+
+    public enum EstadoRuta
+    {
+        Activo,
+        Inactivo
     }
 }

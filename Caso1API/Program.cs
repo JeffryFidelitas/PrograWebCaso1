@@ -1,4 +1,5 @@
 using Caso1.Core.Data;
+using Caso1.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,7 +38,10 @@ app.MapGet("/api/GetRutas", async (ApplicationDbContext _context) =>
 {
     try
     {
-        var rutas = await _context.Rutas.Where(r => r.Activo).ToListAsync();
+        var rutas = await _context.Rutas
+            .Where(r => r.Estado == EstadoRuta.Activo)
+            .ToListAsync();
+
         return Results.Ok(rutas);
     }
     catch (Exception ex)
