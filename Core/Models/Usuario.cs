@@ -33,6 +33,15 @@ namespace Caso1.Core.Models
         public ICollection<Boleto> Boletos { get; set; } = new List<Boleto>();
     }
 
+    public class UsuarioLogin
+    {
+        [Required(ErrorMessage = "Favor ingrese el Nombre de Usuario")]
+        [DisplayName("Nombre de Usuario")]
+        public string NombreUsuario { get; set; }
+        [Required(ErrorMessage = "Favor ingrese la Contraseña")]
+        public string Contraseña { get; set; }
+    }
+
     public enum RolUsuario
     {
         Administrador,

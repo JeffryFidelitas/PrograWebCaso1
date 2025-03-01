@@ -4,6 +4,10 @@ using Caso1.Core.Data;
 using Caso1.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.CodeAnalysis.Scripting;
+using System.Security.Claims;
 
 namespace Caso1.Controllers
 {
@@ -17,62 +21,125 @@ namespace Caso1.Controllers
             _context = context;
         }
 
-        private SelectList GetRoles(string? rolSeleccionado = null)
+        #region Autenticación
+        [HttpGet]
+        public IActionResult Login()
         {
-            return new SelectList(Enum.GetValues(typeof(RolUsuario))
-                .Cast<RolUsuario>()
-                .Select(r => new { Value = r.ToString(), Text = r.ToString() }),
-                "Value", "Text", rolSeleccionado);
+            return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login([Bind("NombreUsuario,Contraseña")] UsuarioLogin usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(usuario); // Devuelve la vista con los errores de validación
+            }
+            var usuarioExistente = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.NombreUsuario == usuario.NombreUsuario);
+
+            if (usuarioExistente == null)
+            {
+                ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
+                return View(usuario);
+            }
+
+            // Autenticación con claims
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuarioExistente.NombreUsuario),
+                new Claim(ClaimTypes.Role, usuarioExistente.Rol.ToString())
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true // Mantiene la sesión abierta
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register([Bind("NombreCompleto,NombreUsuario,Correo,Telefono,Contraseña")] Usuario usuario)
+        {
+            ModelState.Remove(nameof(usuario.Rol));
+            
+            if (!ModelState.IsValid)
+            {
+                return View(usuario); // Devuelve la vista con los errores de validación
+            }
+            // Validamos que el nombre usuario no exista
+            if (_context.Usuarios.Any(u => u.NombreUsuario == usuario.NombreUsuario))
+            {
+                ModelState.AddModelError("NombreUsuario", "El nombre de usuario ya existe.");
+                return View(usuario);
+            }
+
+            usuario.Rol = RolUsuario.Usuario;
+
+            _context.Add(usuario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Login");
+        }
+        #endregion
+
+        #region CRUD
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
 
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         [HttpGet]
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuarios = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuarios == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuarios);
-        }
-
-        // GET: Usuarios/Create
         public IActionResult Create()
         {
             ViewBag.Roles = GetRoles();
             return View();
         }
 
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NombreCompleto,NombreUsuario,Correo,Telefono,Contraseña,Rol")] Usuario usuarios)
         {
+            // Validamos que el nombre usuario no exista
+            if (_context.Usuarios.Any(u => u.NombreUsuario == usuarios.NombreUsuario))
+            {
+                ModelState.AddModelError("NombreUsuario", "El nombre de usuario ya existe.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(usuarios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Roles = GetRoles();
             return View(usuarios);
         }
 
-        // GET: Usuarios/Edit/5
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,8 +156,7 @@ namespace Caso1.Controllers
             return View(usuarios);
         }
 
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,NombreCompleto,NombreUsuario,Correo,Telefono,Contraseña,Rol")] Usuario usuario)
@@ -131,8 +197,7 @@ namespace Caso1.Controllers
             return View(usuario);
         }
 
-
-        // GET: Usuarios/Delete/5
+        [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,10 +218,21 @@ namespace Caso1.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        #endregion
+
+        #region Métodos privados
+        private SelectList GetRoles(string? rolSeleccionado = null)
+        {
+            return new SelectList(Enum.GetValues(typeof(RolUsuario))
+                .Cast<RolUsuario>()
+                .Select(r => new { Value = r.ToString(), Text = r.ToString() }),
+                "Value", "Text", rolSeleccionado);
+        }
 
         private bool UsuariosExists(int id)
         {
             return _context.Usuarios.Any(e => e.Id == id);
         }
+        #endregion
     }
 }
