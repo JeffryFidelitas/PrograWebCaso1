@@ -15,7 +15,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Usuarios")">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("AdministracionUsuario","Usuarios")">Usuarios</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Agregar Usuario</li>
                     </ol>
                 </nav>
@@ -74,7 +74,7 @@
                                         <div class="form-group">
                                             <label asp-for="Rol"></label>
                                             <select asp-for="Rol" asp-items="ViewBag.Roles" class="form-select">
-                                                <option value="">Seleccione un Rol</option>"
+                                                <option value="">Seleccione un Rol</option>
                                             </select>
                                             <span asp-validation-for="Rol" class="text-danger"></span>
                                         </div>

@@ -65,21 +65,33 @@
 
                         @if (User.TieneRol("Administrador"))
                         {
-                            <li class="sidebar-item has-sub">
-                                <a href="#" class="sidebar-link">
+                            <li class="sidebar-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Create" ? "is-active" : "")">
+                                <a href="@Url.Action("AdministracionUsuario","Usuarios")" class="sidebar-link ">
                                     <i class="bi bi-people-fill"></i>
                                     <span>Usuarios</span>
                                 </a>
-                                <ul class="submenu">
-                                    <li class="submenu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Create" ? "is-active" : "")">
-                                        <a href="@Url.Action("Create","Usuarios")">Agregar Usuario</a>
-                                    </li>
-                                    <li class="submenu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "is-active" : "")">
-                                        <a href="@Url.Action("Index","Usuarios")">Administración de Usuarios</a>
-                                    </li>
-                                </ul>
                             </li>
                         }
+                        @* @if (User.TieneRol()) *@
+                        @* { *@
+                        <li class="sidebar-item has-sub">
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-signpost-split"></i>
+                                <span>Rutas</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "is-active" : "")">
+                                    <a href="@Url.Action("AdministracionRuta","Ruta")">Administración de Rutas</a>
+                                </li>
+                                <li class="submenu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "is-active" : "")">
+                                    <a href="@Url.Action("AdministracionParada","Paradas")">Administración de Paradas</a>
+                                </li>
+                                <li class="submenu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "is-active" : "")">
+                                    <a href="@Url.Action("AdministracionHorario","Horarios")">Administración de Horarios</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @* } *@
                     </ul>
                 </nav>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

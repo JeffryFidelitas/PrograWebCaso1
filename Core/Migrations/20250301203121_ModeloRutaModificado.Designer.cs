@@ -4,6 +4,7 @@ using Caso1.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250301203121_ModeloRutaModificado")]
+    partial class ModeloRutaModificado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +67,14 @@ namespace Core.Migrations
                     b.Property<TimeSpan>("Hora")
                         .HasColumnType("time");
 
+                    b.Property<int>("RutaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Horarios");
+                    b.HasIndex("RutaId");
+
+                    b.ToTable("Horario");
                 });
 
             modelBuilder.Entity("Caso1.Core.Models.Parada", b =>
@@ -82,9 +90,14 @@ namespace Core.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("RutaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Paradas");
+                    b.HasIndex("RutaId");
+
+                    b.ToTable("Parada");
                 });
 
             modelBuilder.Entity("Caso1.Core.Models.Ruta", b =>
@@ -102,8 +115,7 @@ namespace Core.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Estado")
                         .HasColumnType("int");
@@ -124,39 +136,6 @@ namespace Core.Migrations
                     b.HasIndex("UsuarioRegistroId");
 
                     b.ToTable("Rutas");
-                });
-
-            modelBuilder.Entity("Caso1.Core.Models.RutaHorario", b =>
-                {
-                    b.Property<int>("RutaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HorarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RutaId", "HorarioId");
-
-                    b.HasIndex("HorarioId");
-
-                    b.ToTable("RutasHorarios");
-                });
-
-            modelBuilder.Entity("Caso1.Core.Models.RutaParada", b =>
-                {
-                    b.Property<int>("RutaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ParadaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Orden")
-                        .HasColumnType("int");
-
-                    b.HasKey("RutaId", "ParadaId");
-
-                    b.HasIndex("ParadaId");
-
-                    b.ToTable("RutasParadas");
                 });
 
             modelBuilder.Entity("Caso1.Core.Models.Usuario", b =>
@@ -263,6 +242,28 @@ namespace Core.Migrations
                     b.Navigation("Vehiculo");
                 });
 
+            modelBuilder.Entity("Caso1.Core.Models.Horario", b =>
+                {
+                    b.HasOne("Caso1.Core.Models.Ruta", "Ruta")
+                        .WithMany("Horarios")
+                        .HasForeignKey("RutaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ruta");
+                });
+
+            modelBuilder.Entity("Caso1.Core.Models.Parada", b =>
+                {
+                    b.HasOne("Caso1.Core.Models.Ruta", "Ruta")
+                        .WithMany("Paradas")
+                        .HasForeignKey("RutaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ruta");
+                });
+
             modelBuilder.Entity("Caso1.Core.Models.Ruta", b =>
                 {
                     b.HasOne("Caso1.Core.Models.Usuario", "UsuarioRegistro")
@@ -272,44 +273,6 @@ namespace Core.Migrations
                         .IsRequired();
 
                     b.Navigation("UsuarioRegistro");
-                });
-
-            modelBuilder.Entity("Caso1.Core.Models.RutaHorario", b =>
-                {
-                    b.HasOne("Caso1.Core.Models.Horario", "Horario")
-                        .WithMany("RutasHorarios")
-                        .HasForeignKey("HorarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Caso1.Core.Models.Ruta", "Ruta")
-                        .WithMany("RutasHorarios")
-                        .HasForeignKey("RutaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Horario");
-
-                    b.Navigation("Ruta");
-                });
-
-            modelBuilder.Entity("Caso1.Core.Models.RutaParada", b =>
-                {
-                    b.HasOne("Caso1.Core.Models.Parada", "Parada")
-                        .WithMany("RutasParadas")
-                        .HasForeignKey("ParadaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Caso1.Core.Models.Ruta", "Ruta")
-                        .WithMany("RutasParadas")
-                        .HasForeignKey("RutaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Parada");
-
-                    b.Navigation("Ruta");
                 });
 
             modelBuilder.Entity("Caso1.Core.Models.Vehiculo", b =>
@@ -323,23 +286,13 @@ namespace Core.Migrations
                     b.Navigation("UsuarioRegistro");
                 });
 
-            modelBuilder.Entity("Caso1.Core.Models.Horario", b =>
-                {
-                    b.Navigation("RutasHorarios");
-                });
-
-            modelBuilder.Entity("Caso1.Core.Models.Parada", b =>
-                {
-                    b.Navigation("RutasParadas");
-                });
-
             modelBuilder.Entity("Caso1.Core.Models.Ruta", b =>
                 {
                     b.Navigation("Boletos");
 
-                    b.Navigation("RutasHorarios");
+                    b.Navigation("Horarios");
 
-                    b.Navigation("RutasParadas");
+                    b.Navigation("Paradas");
                 });
 
             modelBuilder.Entity("Caso1.Core.Models.Usuario", b =>

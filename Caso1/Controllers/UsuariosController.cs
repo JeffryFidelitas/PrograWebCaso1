@@ -103,7 +103,7 @@ namespace Caso1.Controllers
         #region CRUD
         [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> AdministracionUsuario()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
@@ -131,10 +131,14 @@ namespace Caso1.Controllers
             {
                 _context.Add(usuarios);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                TempData["Mensaje"] = "Usuario creado.";
+                TempData["TipoMensaje"] = "success";
+                return RedirectToAction(nameof(AdministracionUsuario));
             }
 
             ViewBag.Roles = GetRoles();
+            TempData["Mensaje"] = "Error al crear el usuario.";
+            TempData["TipoMensaje"] = "danger";
             return View(usuarios);
         }
 
@@ -185,19 +189,25 @@ namespace Caso1.Controllers
                     usuarioExistente.Rol = usuario.Rol;
 
                     await _context.SaveChangesAsync();
+
+                    TempData["Mensaje"] = "Usuario actualizado.";
+                    TempData["TipoMensaje"] = "success";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     return StatusCode(500, "Error de concurrencia en la base de datos.");
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AdministracionUsuario));
             }
             ViewBag.Roles = GetRoles(usuario.Rol.ToString());
+            TempData["Mensaje"] = "Error al actualizar el usuario.";
+            TempData["TipoMensaje"] = "danger";
             return View(usuario);
         }
 
         [Authorize(Roles = $"{nameof(RolUsuario.Administrador)}")]
+        [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -216,7 +226,10 @@ namespace Caso1.Controllers
             _context.Usuarios.Remove(usuarios);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            TempData["Mensaje"] = "Usuario eliminado.";
+            TempData["TipoMensaje"] = "success";
+
+            return RedirectToAction(nameof(AdministracionUsuario));
         }
         #endregion
 
