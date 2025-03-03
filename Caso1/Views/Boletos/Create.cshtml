@@ -1,0 +1,101 @@
+﻿@model Caso1.Core.Models.Boleto
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.RutasSelect = new SelectList(ViewBag.Rutas, "Id", "Nombre");
+}
+
+<script>
+    function rutaCambiada(element) {
+        document.querySelectorAll("select#horarioSelect option").forEach(option => {
+            option.hidden = (option.dataset.ruta === element.value);
+        });
+        document.querySelector("select#horarioSelect").value = "";
+    }
+</script>
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Registro de Boleto</h3>
+                <p class="text-subtitle text-muted">Complete los campos para agregar un nuevo boleto</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("AdministracionBoleto","Boletos")">Boletos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Agregar Boleto</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Formulario de Registro</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            @using (Html.BeginForm("Create", "Boletos", FormMethod.Post, new { @class = "form" }))
+                            {
+                                <div class="row">
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Ruta"></label>
+                                            <select asp-for="Ruta" asp-items="ViewBag.RutasSelect" class="form-select" onchange="rutaCambiada(this);" onload="rutaCambiada(this);"></select>
+                                            <span asp-asp-validation-for="Ruta" class="text-danget"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Horario"></label>
+                                            <select asp-for="Horario" class="form-select" id="horarioSelect">
+                                                @foreach (var ruta in ViewBag.Rutas) {
+                                                    @foreach (var horario in ruta.Horarios) {
+                                                        <option value="@horario" data-ruta="@ruta.Id" hidden>@horario</option>
+                                                    }
+                                                }
+                                            </select>
+                                            <span asp-asp-validation-for="Horario" class="text-danget" onload="this.value = ''"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Vehiculo"></label>
+                                            <select asp-for="Vehiculo" asp-items="ViewBag.Vehiculos" class="form-select"></select>
+                                            <span asp-asp-validation-for="Vehiculo" class="text-danget"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Registrar</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Restablecer</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
