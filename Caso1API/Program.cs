@@ -39,10 +39,34 @@ app.MapGet("/api/GetRutas", async (ApplicationDbContext _context) =>
     try
     {
         var rutas = await _context.Rutas
-            .Where(r => r.Estado == EstadoRuta.Activo)
-            .ToListAsync();
+                .Include(r => r.UsuarioRegistro)
+                .Include(r => r.RutasParadas)
+                    .ThenInclude(rp => rp.Parada)
+                .Include(r => r.RutasHorarios)
+                    .ThenInclude(rh => rh.Horario)
+                .Where(r => r.Estado == EstadoRuta.Activo).ToListAsync();
+        
+        var rutasDTO = rutas.Select(r => new
+        {
+            r.Id,
+            r.Codigo,
+            r.Nombre,
+            r.Descripcion,
+            r.Estado,
+            r.FechaRegistro,
+            UsuarioRegistro = r.UsuarioRegistro.NombreUsuario,
+            Paradas = r.RutasParadas.Select(rp => new
+            {
+                rp.Orden,
+                rp.Parada.Nombre
+            }),
+            Horarios = r.RutasHorarios.Select(rh => new
+            {
+                rh.Horario.Hora
+            })
+        });
 
-        return Results.Ok(rutas);
+        return Results.Ok(rutasDTO);
     }
     catch (Exception ex)
     {
@@ -54,8 +78,35 @@ app.MapGet("/api/GetRuta/{id}", async (int id, ApplicationDbContext _context) =>
 {
     try
     {
-        var ruta = await _context.Rutas.FindAsync(id);
-        return ruta is not null ? Results.Ok(ruta) : Results.NotFound();
+        var ruta = await _context.Rutas
+                .Include(r => r.UsuarioRegistro)
+                .Include(r => r.RutasParadas)
+                    .ThenInclude(rp => rp.Parada)
+                .Include(r => r.RutasHorarios)
+                    .ThenInclude(rh => rh.Horario)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+        var rutaDTO = new
+        {
+            ruta.Id,
+            ruta.Codigo,
+            ruta.Nombre,
+            ruta.Descripcion,
+            ruta.Estado,
+            ruta.FechaRegistro,
+            UsuarioRegistro = ruta.UsuarioRegistro.NombreUsuario,
+            Paradas = ruta.RutasParadas.Select(rp => new
+            {
+                rp.Orden,
+                rp.Parada.Nombre
+            }),
+            Horarios = ruta.RutasHorarios.Select(rh => new
+            {
+                rh.Horario.Hora
+            })
+        };
+
+        return ruta is not null ? Results.Ok(rutaDTO) : Results.NotFound();
     }
     catch (Exception ex)
     {
