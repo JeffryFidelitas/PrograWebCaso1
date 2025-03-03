@@ -16,7 +16,7 @@ namespace Caso1.Core.Models
         public string Modelo { get; set; }
 
         [Required]
-        public int Capacidad { get; set; }
+        public int Capacidad { get; set; } = 100;
 
         [Required]
         public EstadoVehiculo Estado { get; set; }

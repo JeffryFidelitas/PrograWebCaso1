@@ -1,0 +1,90 @@
+﻿@model Caso1.Core.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Detalles del vehiculo</h3>
+                <p class="text-subtitle text-muted">Información detallada del vehiculo registrado</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("AdministracionVehiculo","Vehiculos")">Vehiculos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detalles</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="detalle-vehiculo">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Información del vehiculo</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Placa</label>
+                                        <p class="form-control-plaintext">@Model.Placa</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Modelo</label>
+                                        <p class="form-control-plaintext">@Model.Modelo</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Capacidad</label>
+                                        <p class="form-control-plaintext">@Model.Capacidad</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <p class="form-control-plaintext">@Model.Estado</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fecha de Registro</label>
+                                        <p class="form-control-plaintext">@Model.FechaRegistro</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Registrado por</label>
+                                        <p class="form-control-plaintext">@Model.UsuarioRegistro.NombreUsuario</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a asp-action="AdministracionVehiculo" class="btn btn-secondary me-1 mb-1">Volver</a>
+                                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-1 mb-1">Editar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+}
+
+@section Scripts {
+}

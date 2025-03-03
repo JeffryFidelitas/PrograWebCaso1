@@ -22,6 +22,27 @@ namespace Caso1.Core.Models
         public Vehiculo Vehiculo { get; set; }
 
         [Required]
+        public Horario Horario { get; set; }
+
+        [Required]
         public DateTime FechaCompra { get; set; } = DateTime.UtcNow;
+    }
+
+    public class BoletoListViewModel
+    {
+        public int Id { get; set; }
+        public Usuario? Usuario { get; set; }
+        public Ruta? Ruta { get; set; }
+        public Horario? Horario { get; set; }
+    }
+
+    public class BoletoDetailsViewModel
+    {
+        public int Id { get; set; }
+        public Usuario? Usuario { get; set; }
+        public Ruta? Ruta { get; set; }
+        public Vehiculo? Vehiculo { get; set; }
+        public Horario? Horario { get; set; }
+        public DateTime FechaCompra { get; set; }
     }
 }

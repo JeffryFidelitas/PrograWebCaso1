@@ -1,0 +1,108 @@
+﻿@model Caso1.Core.Models.BoletoDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Detalles del Boleto</h3>
+                <p class="text-subtitle text-muted">Información detallada del boleto registrado</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("AdministracionBoleto","Boletos")">Boletos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detalles</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="detalle-boleto">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Información del Boleto</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Usuario</label>
+                                        @if (@Model.Usuario != null) {
+                                            <p class="form-control-plaintext">@Model.Usuario.NombreCompleto</p>
+                                        }
+                                        else {
+                                            <span>No se especifica usuario</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Ruta</label>
+                                        @if (@Model.Ruta != null) {
+                                            <p class="form-control-plaintext">@Model.Ruta.Nombre</p>
+                                        }
+                                        else {
+                                            <span>No se especifica ruta</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Vehiculo</label>
+                                        <p class="form-control-plaintext">
+                                            @if (@Model.Vehiculo != null) {
+                                                <span>@Model.Vehiculo.Modelo</span> <span>@Model.Vehiculo.Placa</span>
+                                            }
+                                            else {
+                                                <span>No se especifica vehiculo</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Hora</label>
+                                        @if (@Model.Horario != null) {
+                                            <p class="form-control-plaintext">@Model.Horario.Hora</p>
+                                        }
+                                        else {
+                                            <span>No se especifica hora</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fecha de Registro</label>
+                                        <p class="form-control-plaintext">@Model.FechaCompra</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a asp-action="AdministracionBoleto" class="btn btn-secondary me-1 mb-1">Volver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+}
+
+@section Scripts {
+}
