@@ -90,6 +90,9 @@ namespace Caso1.Controllers
             model.Ruta = RutaEnc;
             model.RutaId = RutaEnc.Id;
 
+            if (Horario == null)
+                return View(model);
+
             var HorarioEnc = _context.Horarios
                 .Where(h => h.Hora == TimeSpan.Parse(Horario))
                 .FirstOrDefault();
@@ -115,7 +118,7 @@ namespace Caso1.Controllers
 
             _context.Update(model.Vehiculo);
             _context.Add(model);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return RedirectToAction(nameof(AdministracionBoleto));
         }
