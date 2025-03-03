@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|solutionrelative:caso1api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\views\\paradas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\views\\paradas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1api\\models\\dbconcontext\\caso1context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|solutionrelative:caso1api\\models\\dbconcontext\\caso1context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\controllers\\paradascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\controllers\\paradascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1api\\models\\boleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|solutionrelative:caso1api\\models\\boleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\views\\paradas\\administracionparada.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\views\\paradas\\administracionparada.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|solutionrelative:caso1api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1api\\models\\rutas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93E3CC38-6BC1-4056-B671-65D6E2CCF618}|Caso1API\\Caso1API.csproj|solutionrelative:caso1api\\models\\rutas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC5C3D3B-63CE-4761-BD83-589BE659DE82}|Core\\Core.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\core\\models\\ruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC5C3D3B-63CE-4761-BD83-589BE659DE82}|Core\\Core.csproj|solutionrelative:core\\models\\ruta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\views\\ruta\\administracionruta.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\views\\ruta\\administracionruta.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|c:\\users\\casti\\source\\repos\\prograwebcaso1\\caso1\\controllers\\horarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F12E22B4-BA1C-4656-97ED-BDA97EA2BB63}|Caso1\\Caso1.csproj|solutionrelative:caso1\\controllers\\horarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,86 +38,104 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Boleto.cs",
-              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\Boleto.cs",
-              "RelativeDocumentMoniker": "Caso1API\\Models\\Boleto.cs",
-              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\Boleto.cs",
-              "RelativeToolTip": "Caso1API\\Models\\Boleto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswBYAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T01:45:28.055Z",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Caso1\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Caso1\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAFYAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-02T04:24:08.036Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\appsettings.json",
-              "RelativeDocumentMoniker": "Caso1API\\appsettings.json",
-              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\appsettings.json",
-              "RelativeToolTip": "Caso1API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-25T01:34:34.809Z",
+              "DocumentIndex": 5,
+              "Title": "AdministracionRuta.cshtml",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Ruta\\AdministracionRuta.cshtml",
+              "RelativeDocumentMoniker": "Caso1\\Views\\Ruta\\AdministracionRuta.cshtml",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Ruta\\AdministracionRuta.cshtml",
+              "RelativeToolTip": "Caso1\\Views\\Ruta\\AdministracionRuta.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-02T04:19:27.836Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Rutas.cs",
-              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\Rutas.cs",
-              "RelativeDocumentMoniker": "Caso1API\\Models\\Rutas.cs",
-              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\Rutas.cs",
-              "RelativeToolTip": "Caso1API\\Models\\Rutas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAaAAAAAAAAAA==",
+              "Title": "Ruta.cs",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Core\\Models\\Ruta.cs",
+              "RelativeDocumentMoniker": "Core\\Models\\Ruta.cs",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Core\\Models\\Ruta.cs",
+              "RelativeToolTip": "Core\\Models\\Ruta.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAADYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T01:32:37.022Z",
+              "WhenOpened": "2025-03-02T04:14:48.924Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Program.cs",
-              "RelativeDocumentMoniker": "Caso1API\\Program.cs",
-              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Program.cs",
-              "RelativeToolTip": "Caso1API\\Program.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAqwBEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "HorariosController.cs",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Controllers\\HorariosController.cs",
+              "RelativeDocumentMoniker": "Caso1\\Controllers\\HorariosController.cs",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Controllers\\HorariosController.cs",
+              "RelativeToolTip": "Caso1\\Controllers\\HorariosController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwDMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T01:30:01.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Caso1Context.cs",
-              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\DbConContext\\Caso1Context.cs",
-              "RelativeDocumentMoniker": "Caso1API\\Models\\DbConContext\\Caso1Context.cs",
-              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1API\\Models\\DbConContext\\Caso1Context.cs",
-              "RelativeToolTip": "Caso1API\\Models\\DbConContext\\Caso1Context.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAADwvyYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T01:25:30.983Z",
+              "WhenOpened": "2025-03-02T04:14:25.469Z",
               "EditorCaption": ""
             }
           ]
         },
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Paradas\\Create.cshtml",
+              "RelativeDocumentMoniker": "Caso1\\Views\\Paradas\\Create.cshtml",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Paradas\\Create.cshtml",
+              "RelativeToolTip": "Caso1\\Views\\Paradas\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-02T04:25:23.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdministracionParada.cshtml",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Paradas\\AdministracionParada.cshtml",
+              "RelativeDocumentMoniker": "Caso1\\Views\\Paradas\\AdministracionParada.cshtml",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Views\\Paradas\\AdministracionParada.cshtml",
+              "RelativeToolTip": "Caso1\\Views\\Paradas\\AdministracionParada.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-02T04:19:18.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ParadasController.cs",
+              "DocumentMoniker": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Controllers\\ParadasController.cs",
+              "RelativeDocumentMoniker": "Caso1\\Controllers\\ParadasController.cs",
+              "ToolTip": "C:\\Users\\casti\\source\\repos\\PrograWebCaso1\\Caso1\\Controllers\\ParadasController.cs",
+              "RelativeToolTip": "Caso1\\Controllers\\ParadasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-02T04:14:23.251Z",
+              "EditorCaption": ""
             }
           ]
         }

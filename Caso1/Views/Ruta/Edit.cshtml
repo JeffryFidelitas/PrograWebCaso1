@@ -1,0 +1,112 @@
+﻿@model Caso1.Core.Models.RutaCRUDViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Edición de Ruta</h3>
+                <p class="text-subtitle text-muted">Modifique los campos para actualizar la ruta</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("AdministracionRuta","Ruta")">Rutas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Editar Ruta</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Formulario de Edición</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            @using (Html.BeginForm("Edit", "Ruta", FormMethod.Post, new { @class = "form" }))
+                            {
+                                <div class="row">
+                                    @Html.HiddenFor(model => model.Id)
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Codigo"></label>
+                                            <input asp-for="Codigo" type="text" class="form-control" placeholder="Código de Ruta">
+                                            <span asp-validation-for="Codigo" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Nombre"></label>
+                                            <input asp-for="Nombre" type="text" class="form-control" placeholder="Nombre de Ruta">
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Descripcion"></label>
+                                            <textarea asp-for="Descripcion" class="form-control" placeholder="Descripción de la Ruta"></textarea>
+                                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="ParadasSeleccionadas"></label>
+                                            <select asp-for="ParadasSeleccionadas" asp-items="ViewBag.Paradas" class="form-select" multiple></select>
+                                            <span asp-validation-for="ParadasSeleccionadas" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="HorariosSeleccionados"></label>
+                                            <select asp-for="HorariosSeleccionados" asp-items="ViewBag.Horarios" class="form-select" multiple></select>
+                                            <span asp-validation-for="HorariosSeleccionados" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label asp-for="Estado"></label>
+                                            <select asp-for="Estado" asp-items="ViewBag.EstadoRuta" class="form-select">
+                                                <option value="">Seleccione el estado</option>"
+                                            </select>
+                                            <span asp-validation-for="Estado" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Actualizar</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Restablecer</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

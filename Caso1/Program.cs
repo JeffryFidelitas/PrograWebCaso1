@@ -1,4 +1,5 @@
-using Caso1.Models;
+using Caso1.Core.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,10 +8,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add DbContext to the container
-builder.Services.AddDbContext<CasoPracticoIContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Caso1DB"));
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Usuarios/Login"; // Página de login
+        options.LogoutPath = "/Usuarios/Logout"; // Página de logout
+        options.AccessDeniedPath = "/Home/AccessDenied"; // Página de acceso denegado
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -27,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
