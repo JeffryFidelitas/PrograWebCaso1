@@ -106,9 +106,14 @@ namespace Caso1.Controllers
             if (VehiculoEnc == null)
                 return View(model);
 
+            if (VehiculoEnc.Capacidad < 1)
+                return View(model);
+
             model.Vehiculo = VehiculoEnc;
             model.VehiculoId = VehiculoEnc.Id;
+            model.Vehiculo.Capacidad -= 1;
 
+            _context.Update(model.Vehiculo);
             _context.Add(model);
             _context.SaveChangesAsync();
 
